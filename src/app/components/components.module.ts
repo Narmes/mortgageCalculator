@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ComponentsRoutingModule } from './components-routing.module';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CalculatorComponent } from './calculator/calculator.component';
   ],
   imports: [
     CommonModule,
-    ComponentsRoutingModule
+    ComponentsRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ComponentsModule { }

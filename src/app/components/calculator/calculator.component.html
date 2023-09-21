@@ -1,52 +1,63 @@
 <div class="container">
 
-  <div class="panelContent position-absolute top-50 start-50 translate-middle">
+  <div class="panelContent">
 
     <div class="title px-4 mt-4 fs-4">
       <strong>Mortgage Calculator</strong>
     </div>
 
-    <div class="px-5 mt-4 panel">
+    <div class=" panel mt-3">
 
-      <div class="row">
+      <form [formGroup]="dataC">
+
+        <div class="row">
 
           <div class="mt-3 input-group flex-nowrap">
-            <span class="input-group-text" id="basic-addon3">Purchase price</span>
-            <input type="text" class="form-control" placeholder="00.0" aria-describedby="basic-addon3 basic-addon4">
+            <span class="input-group-text">Purchase price</span>
+            <input type="number" class="form-control" placeholder="00.0" formControlName="purchasePrice" aria-describedby="basic-addon3 basic-addon4">
           </div>
 
           <div class="mt-3 input-group flex-nowrap">
-            <span class="input-group-text" id="basic-addon3"> Interest rate <strong class="fs-6 px-1">%</strong></span>
-            <input type="text" class="form-control" placeholder="0.0%" aria-describedby="basic-addon3 basic-addon4">
+            <span class="input-group-text" >Interest rate<strong class="fs-6 px-1">%</strong></span>
+            <input type="number" class="form-control" placeholder="0.0%" formControlName="interestRate" aria-describedby="basic-addon3 basic-addon4">
           </div>
 
           <div class="mt-3 input-group flex-nowrap">
-            <span class="input-group-text" id="basic-addon3">Down payment </span>
-            <input type="text" class="form-control" placeholder="00.0" aria-describedby="basic-addon3 basic-addon4">
+            <span class="input-group-text" >Down payment</span>
+            <input type="number" class="form-control" placeholder="00.0" formControlName="downPayment" aria-describedby="basic-addon3 basic-addon4">
           </div>
 
           <div class="mt-3 input-group flex-nowrap">
-            <span class="input-group-text" id="basic-addon3">Repayment time</span>
-            <input type="text" class="form-control" placeholder="00.0" aria-describedby="basic-addon3 basic-addon4">
+            <span class="input-group-text" >Repayment time</span>
+            <input type="number" class="form-control" placeholder="00 Yeard" formControlName="repaymentTime" aria-describedby="basic-addon3 basic-addon4">
           </div>
 
           <div class=" mt-3 input-group flex-nowrap">
-            <span class="input-group-text" id="basic-addon3">Loan amount <strong class="fs-6 px-1">%</strong></span>
-            <span class="input-group-text" id="basic-addon3"><strong>00.0</strong></span>
+            <span class="input-group-text" >Loan amount</span>
+            <span class="input-group-text" ><strong>${{LoanAmount|number:"1.0-2"}}</strong></span>
           </div>
 
-          <div class=" mt-3 input-group flex-nowrap">
-            <span class="input-group-text" id="basic-addon3">Estimated pr. amount</span>
-            <span class="input-group-text" id="basic-addon3"><strong>00.0</strong></span>
+          <div class="mt-3 input-group flex-nowrap">
+            <span class="input-group-text" >Estimated pr. amount</span>
+            <span class="input-group-text" ><strong>${{EstimatedAmount|number:'1.0-2' }}</strong></span>
           </div>
-          
-      </div>
 
-      <div class="row">
-        <div class="mt-4">
-          <button type="button" class="btn btn-warning text-light">Get a mortagage quote</button>
         </div>
-      </div>
+
+        <div class="row align-items-center">
+            <div class="mt-4">
+              <button type="button" (click)="mortagageQuote()" [disabled]="dataC.invalid" class="btn btn-warning" >
+                <label *ngIf="!dataC.invalid">
+                  Get a mortagage quote
+                </label>
+                <label *ngIf="dataC.invalid">
+                  Complete all fields
+                </label>
+              </button>
+          </div>
+
+        </div>
+      </form>
 
     </div>
 
